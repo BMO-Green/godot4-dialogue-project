@@ -1,0 +1,2 @@
+"Now this here is our first dialogue option"
+"There isn't much to explore, but it is a nice thing to know"

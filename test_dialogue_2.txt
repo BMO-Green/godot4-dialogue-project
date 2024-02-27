@@ -1,0 +1,4 @@
+"Ready for option 2?"
+"This option has a lot more in store"
+"By the time you're reading this, we have surpassed over 100 characters!"
+"To wrap this up, let's load dialogue option number 3"

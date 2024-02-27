@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://dli7ty2v636s7"]
+
+[ext_resource type="Script" path="res://test_scene.gd" id="1_0wtgt"]
+[ext_resource type="PackedScene" uid="uid://4683wsgy5fsq" path="res://dialogue_control.tscn" id="1_57dop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtiy8"]
+bg_color = Color(0.27451, 0.231373, 0.501961, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[node name="TestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0wtgt")
+
+[node name="DialogueControl" parent="." instance=ExtResource("1_57dop")]
+layout_mode = 1
+
+[node name="DialogueOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 98.0
+offset_right = 426.0
+offset_bottom = 350.0
+alignment = 1
+
+[node name="DialogueOptionsLabel" type="Label" parent="DialogueOptions"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dtiy8")
+text = "Dialogue options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueOptionsButton1" type="Button" parent="DialogueOptions"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Load dialogue 1"
+
+[node name="DialogueOptionsButton2" type="Button" parent="DialogueOptions"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Load dialogue 2"
+
+[node name="DialogueOptionsButton3" type="Button" parent="DialogueOptions"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Load dialogue 3"
+
+[node name="DialogMode" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 108.0
+offset_right = 949.0
+offset_bottom = 148.0
+alignment = 2
+
+[node name="DialogueModeLabel" type="Label" parent="DialogMode"]
+custom_minimum_size = Vector2(160, 2.08165e-12)
+layout_mode = 2
+text = "Dialogue mode
+"
+
+[node name="DialogueModeOptionButton" type="OptionButton" parent="DialogMode"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "character"
+popup/item_0/id = 0
+popup/item_1/text = "word"
+popup/item_1/id = 1
+popup/item_2/text = "line"
+popup/item_2/id = 2
+
+[node name="DialogSpeed" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 162.0
+offset_right = 950.0
+offset_bottom = 202.0
+alignment = 2
+
+[node name="DialogueSpeedLabel" type="Label" parent="DialogSpeed"]
+custom_minimum_size = Vector2(160, 2.08165e-12)
+layout_mode = 2
+text = "Dialogue speed
+"
+
+[node name="DialogueSpeedOptionButton" type="OptionButton" parent="DialogSpeed"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "slow"
+popup/item_0/id = 0
+popup/item_1/text = "normal"
+popup/item_1/id = 1
+popup/item_2/text = "fast"
+popup/item_2/id = 2
+
+[node name="InfoLayer" type="CanvasLayer" parent="."]
+
+[node name="CurrentDialogueOption" type="Label" parent="InfoLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Current dialogue option: "
+
+[node name="CurrentLineInDialogue" type="Label" parent="InfoLayer"]
+offset_top = 32.0
+offset_right = 194.0
+offset_bottom = 55.0
+text = "Current line in dialogue:"

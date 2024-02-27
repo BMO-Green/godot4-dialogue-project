@@ -1,0 +1,7 @@
+"Hi there! is this your first time using our new dialogue system?"
+"Don't worry, there is enough to be explored. It won't be too difficult"
+"This text should be [i]italic[/i] and this should be [b]bold[/b]"
+"This one should be [b]bold[/b]"
+"This text should be [color=green]green[/color]"
+"This text should be [wave amp=25 freq=20] waving [/wave] but this should not"
+"Now if you press [SPACE] one more time, I believe we are done here..."

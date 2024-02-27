@@ -1,0 +1,63 @@
+[gd_scene load_steps=16 format=3 uid="uid://4683wsgy5fsq"]
+
+[ext_resource type="Script" path="res://dialogue_control.gd" id="1_12h6e"]
+[ext_resource type="FontFile" uid="uid://cxihs2hr3lb5d" path="res://Roboto/Roboto-Regular.ttf" id="2_4t056"]
+[ext_resource type="FontFile" uid="uid://q2oiqgqpbcl4" path="res://Roboto/Roboto-Black.ttf" id="3_f0wf4"]
+[ext_resource type="FontFile" uid="uid://bplxeuyhnj1iq" path="res://Roboto/Roboto-BlackItalic.ttf" id="4_x13c6"]
+[ext_resource type="FontFile" uid="uid://bt6v2n74mqnxt" path="res://Roboto/Roboto-Bold.ttf" id="5_0nhhi"]
+[ext_resource type="FontFile" uid="uid://b7mn5k60lat3w" path="res://Roboto/Roboto-BoldItalic.ttf" id="6_k3ajo"]
+[ext_resource type="FontFile" uid="uid://sq6xcjwfk65v" path="res://Roboto/Roboto-Italic.ttf" id="7_0w870"]
+[ext_resource type="FontFile" uid="uid://b7my6jrfdd0l0" path="res://Roboto/Roboto-Light.ttf" id="8_2r4rf"]
+[ext_resource type="FontFile" uid="uid://btp2nwte1ho5t" path="res://Roboto/Roboto-LightItalic.ttf" id="9_kf0df"]
+[ext_resource type="FontFile" uid="uid://b8rgrwymrf1wa" path="res://Roboto/Roboto-Medium.ttf" id="10_5fbj7"]
+[ext_resource type="FontFile" uid="uid://cxfrmtb5whlio" path="res://Roboto/Roboto-MediumItalic.ttf" id="11_q2goy"]
+[ext_resource type="FontFile" uid="uid://d4eerpa5bwj0c" path="res://Roboto/Roboto-Thin.ttf" id="12_schcx"]
+[ext_resource type="FontFile" uid="uid://c0ysv1kh077oe" path="res://Roboto/Roboto-ThinItalic.ttf" id="13_5l3gk"]
+
+[sub_resource type="FontVariation" id="FontVariation_h8js1"]
+fallbacks = Array[Font]([ExtResource("3_f0wf4"), ExtResource("4_x13c6"), ExtResource("5_0nhhi"), ExtResource("6_k3ajo"), ExtResource("7_0w870"), ExtResource("8_2r4rf"), ExtResource("9_kf0df"), ExtResource("10_5fbj7"), ExtResource("11_q2goy"), ExtResource("2_4t056"), ExtResource("12_schcx"), ExtResource("13_5l3gk")])
+base_font = ExtResource("2_4t056")
+
+[sub_resource type="Theme" id="Theme_q3ajc"]
+default_font = SubResource("FontVariation_h8js1")
+default_font_size = 28
+
+[node name="DialogueControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12h6e")
+
+[node name="DialoguePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 208.0
+offset_top = -158.0
+offset_right = -208.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueText" type="RichTextLabel" parent="DialoguePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -51.0
+offset_right = -17.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q3ajc")
+bbcode_enabled = true
+text = "Some type of [i]dialogue[/i] right here..
+This text should be [color=green] green [/color]
+And a [b]third[/b] phrase here.  "
