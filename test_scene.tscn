@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dli7ty2v636s7"]
+[gd_scene load_steps=5 format=3 uid="uid://dli7ty2v636s7"]
 
 [ext_resource type="Script" path="res://test_scene.gd" id="1_0wtgt"]
 [ext_resource type="PackedScene" uid="uid://4683wsgy5fsq" path="res://dialogue_control.tscn" id="1_57dop"]
+[ext_resource type="Theme" uid="uid://duib8mxbys8jj" path="res://themes/base_theme.tres" id="1_va4ix"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtiy8"]
 bg_color = Color(0.27451, 0.231373, 0.501961, 1)
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_va4ix")
 script = ExtResource("1_0wtgt")
 
 [node name="DialogueControl" parent="." instance=ExtResource("1_57dop")]

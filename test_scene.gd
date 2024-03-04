@@ -3,9 +3,9 @@ extends Control
 @onready var dialogue_control = $DialogueControl
 
 @onready var dialogue_options = {
-	$DialogueOptions/DialogueOptionsButton1: "res://test_dialogue_1.txt",
-	$DialogueOptions/DialogueOptionsButton2: "res://test_dialogue_2.txt",
-	$DialogueOptions/DialogueOptionsButton3: "res://test_dialogue_3.txt",
+	$DialogueOptions/DialogueOptionsButton1: "res://test_dialogues/test_dialogue_1.txt",
+	$DialogueOptions/DialogueOptionsButton2: "res://test_dialogues/test_dialogue_2.txt",
+	$DialogueOptions/DialogueOptionsButton3: "res://test_dialogues/test_dialogue_3.txt",
 }
 
 @onready var dialogue_speed_option_button = $DialogSpeed/DialogueSpeedOptionButton
