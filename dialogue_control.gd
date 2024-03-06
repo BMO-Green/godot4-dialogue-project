@@ -21,7 +21,7 @@ var dialogue_file_path : String = dialogue_test_file_path
 # dialogue object 
 var dialogue : PackedStringArray
 
-# writing modes and speed
+# writing modes for typewriter effect
 enum write_mode {
 	CHARACTER,
 	WORD,
@@ -63,10 +63,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("space"):
-		if not in_dialogue:
-			start_dialogue()
-		else:
-			show_next_dialogue_line()
+		dialogue_action()
 
 
 func load_dialogue_from_PSA(new_dialogue : PackedStringArray):
@@ -103,65 +100,54 @@ func reset_dialogue():
 	clear_text_display()
 	line_index = 0
 	in_dialogue = false
+	current_line = String()
+
+
+func start_dialogue():
+	print("start dialogue")
+	in_dialogue = true
+	line_index = 0
+	# open dialogue and write first line
+	show_dialogue_box()
+	write_line(get_line_in_dialogue(line_index), dialogue_write_mode)
+
 
 func stop_dialogue():
+	print("stop dialogue")
 	hide_dialogue_box()
 	clear_text_display()
 	reset_dialogue()
 
-func show_dialogue_box():
-	dialogue_box.show()
-	text_display.show()
 
-
-func hide_dialogue_box():
-	dialogue_box.hide()
-	text_display.hide()
-
-
-func set_text_display(text : String):
-	text_display.text = text
-
-
-func clear_text_display():
-	text_display.clear()
-
-
-func start_dialogue():
-	in_dialogue = true
-	line_index = 0
-	show_dialogue_box()
-	show_next_dialogue_line()
-
-
-func show_next_dialogue_line():
-	
-	# feed next line
-	if line_index < dialogue.size() - 1 or writing_line:
-		clear_text_display()
-		
-		# complete current line if writing
-		if writing_line:
-			clear_text_display()
-			set_text_display(get_line_in_dialogue(line_index))
-			writing_line = false
-		
-		# write next line if line complete
-		else:
-			line_index +=1
-			write_line(get_line_in_dialogue(line_index), dialogue_write_mode)
-	
-	# end of dialogue
+func dialogue_action():
+	if not in_dialogue:
+		start_dialogue()
 	else:
-		writing_line = false
-		reset_dialogue()
+		if line_index < dialogue.size() - 1 or writing_line:
+			if writing_line:
+				complete_current_dialogue_line()
+			else: 
+				line_index += 1
+				write_line(get_line_in_dialogue(line_index), dialogue_write_mode)
+		else:
+			stop_dialogue()
+
+
+func complete_current_dialogue_line():
+	clear_text_display()
+	set_text_display(current_line)
+	writing_line = false
 
 
 func get_line_in_dialogue(index : int) -> String:
-	return dialogue[index]
+	current_line = dialogue[index]
+	return current_line
 
 
 func write_line(line : String, mode : write_mode):
+	clear_text_display()
+	reset_writing_parameters()
+	
 	match mode:
 		write_mode.LINE:
 			text_display.append_text(line)
@@ -171,7 +157,9 @@ func write_line(line : String, mode : write_mode):
 			
 		write_mode.CHARACTER:
 			write_line_per_character(line)
-			
+		
+
+
 func reset_writing_parameters():
 	parsing_bbcode = false
 	bbcode_close_counter = 0
@@ -182,8 +170,6 @@ func reset_writing_parameters():
 
 
 func write_line_per_character(line : String):
-	
-	reset_writing_parameters()
 	writing_line = true
 	
 	# iterate current line
@@ -223,8 +209,6 @@ func write_line_per_character(line : String):
 
 
 func write_line_per_word(line : String):
-	
-	reset_writing_parameters()
 	writing_line = true
 	
 	# iterate line character by character
@@ -261,3 +245,22 @@ func write_line_per_word(line : String):
 			await display_timer.timeout
 	
 	writing_line = false
+
+
+
+func show_dialogue_box():
+	dialogue_box.show()
+	text_display.show()
+
+
+func hide_dialogue_box():
+	dialogue_box.hide()
+	text_display.hide()
+
+
+func set_text_display(text : String):
+	text_display.text = text
+
+
+func clear_text_display():
+	text_display.clear()
